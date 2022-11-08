@@ -1,4 +1,4 @@
-function App (): JSX.Element {
+function App(): JSX.Element {
   return (
     <div className="App">
       <h1>neoclamp()</h1>

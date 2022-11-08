@@ -6,7 +6,8 @@ module.exports = {
   extends: [
     'standard-with-typescript',
     'plugin:react/recommended',
-    'plugin:react-hooks/recommended'
+    'plugin:react-hooks/recommended',
+    'prettier'
   ],
   overrides: [],
   parserOptions: {

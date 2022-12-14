@@ -3,9 +3,10 @@ import LinePath from './LinePath'
 interface GraphProps {
   width: number
   height: number
+  data: GraphValues
 }
 
-function Graph({ width, height }: GraphProps): JSX.Element {
+function Graph({ width, height, data }: GraphProps): JSX.Element {
   const TEXT_WIDTH = 20
   const TEXT_HEIGHT = 20
   const textAreaWidth = TEXT_WIDTH * 4
@@ -33,7 +34,7 @@ function Graph({ width, height }: GraphProps): JSX.Element {
           stroke="blue"
           d={`
             M ${textAreaWidth} ${graphY}
-            ${LinePath({ x: [100, 200, 300], y: [400, 500, 300] })}
+            ${LinePath(data)}
           `}
           fill="none"
         />

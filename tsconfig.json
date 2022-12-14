@@ -16,10 +16,9 @@
     "noEmit": true,
     "types": ["vite/client"],
     "jsx": "react-jsx",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@assets/*": ["src/assets/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["./src", "./.eslintrc.js", "./vite.config.ts"],

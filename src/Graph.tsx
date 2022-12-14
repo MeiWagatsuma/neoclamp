@@ -3,8 +3,8 @@ interface GraphProps {
   width: number
   height: number
 }
+const TEXT_WIDTH = 20
 function Graph({ backgroundColor, width, height }: GraphProps): JSX.Element {
-  const TEXT_WIDTH = 20
   const TEXT_HEIGHT = 20
   const textAreaWidth = TEXT_WIDTH * 4
   const textAreaHeigh = TEXT_HEIGHT * 2
@@ -25,6 +25,15 @@ function Graph({ backgroundColor, width, height }: GraphProps): JSX.Element {
           `}
           stroke="#000"
           fill={backgroundColor}
+        />
+        <path
+          strokeWidth="3"
+          stroke="blue"
+          d={`
+            M ${textAreaWidth} 0
+            ${LinePath({ x: [100, 200, 300], y: [400, 500, 300] })}
+          `}
+          fill="none"
         />
       </svg>
     </div>

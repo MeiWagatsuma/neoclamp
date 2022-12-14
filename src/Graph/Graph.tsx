@@ -1,4 +1,5 @@
-import LinePath from './LinePath'
+import { GraphValues } from '@/types'
+import ComputeLinePath from './ComputeLinePath'
 
 interface GraphProps {
   width: number

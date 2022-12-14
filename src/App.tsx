@@ -4,7 +4,7 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <h1>neoclamp()</h1>
-      <Graph backgroundColor="#fff" width={400} height={300} />
+      <Graph width={400} height={300} />
     </div>
   )
 }

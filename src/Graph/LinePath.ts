@@ -1,8 +1,6 @@
-interface Data {
-  x: number[]
-  y: number[]
-}
-export default function LinePath(data: Data): string {
+import { GraphValues } from '@/types'
+
+export default function LinePath(data: GraphValues): string {
   function computeDifference(arr: number[]): number[] {
     const AMOUNT_DIFFERENCE_PREVIOUS = 1
     const resultArray: number[] = []
@@ -14,7 +12,7 @@ export default function LinePath(data: Data): string {
     return resultArray
   }
 
-  const displacement: Data = {
+  const displacement: GraphValues = {
     x: computeDifference(data.x),
     y: computeDifference(data.y)
   }

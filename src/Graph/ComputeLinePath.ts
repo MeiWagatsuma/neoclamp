@@ -1,6 +1,6 @@
-import { GraphValues } from '@/types'
+import { LinePath, GraphValues } from '@/types'
 
-export default function LinePath(data: GraphValues): string {
+export function ComputeLinePath(data: GraphValues): LinePath {
   function computeDifference(arr: number[]): number[] {
     const AMOUNT_DIFFERENCE_PREVIOUS = 1
     const resultArray: number[] = []

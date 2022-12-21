@@ -13,15 +13,13 @@ function App(): JSX.Element {
     setInput(e.target.value)
   }
   const onClickHandler = (): void => {
-    console.log(JSON.parse(input))
     setData(JSON.parse(input))
-    console.log(data)
   }
 
   return (
     <div className="App">
       <h1>neoclamp()</h1>
-      <Graph width={400} height={300} data={data} />
+      <Graph width={600} height={300} data={data} />
       <Input onChange={onChangeHandler} value={input} />
       <button onClick={onClickHandler}>update data</button>
     </div>

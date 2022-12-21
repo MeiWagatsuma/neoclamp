@@ -28,9 +28,7 @@ function Graph({ width, height, data }: GraphProps): JSX.Element {
 
   return (
     <div>
-      <p>{JSON.stringify(computedPathObj)}</p>
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-        <rect width="400" height="300" fill="#b6c0e7" />
         <path
           className="axis-line"
           strokeWidth="3"

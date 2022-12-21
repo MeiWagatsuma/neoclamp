@@ -1,17 +1,17 @@
 import { LinePath, GraphValues } from '@/types'
 
-export function ComputeLinePath(data: GraphValues): LinePath {
-  function computeDifference(arr: number[]): number[] {
-    const AMOUNT_DIFFERENCE_PREVIOUS = 1
-    const resultArray: number[] = []
+function computeDifference(arr: number[]): number[] {
+  const AMOUNT_DIFFERENCE_PREVIOUS = 1
+  const resultArray: number[] = []
 
-    for (let i = 0; i < arr.length - AMOUNT_DIFFERENCE_PREVIOUS; i++) {
-      resultArray.push(arr[i + AMOUNT_DIFFERENCE_PREVIOUS] - arr[i])
-    }
-
-    return resultArray
+  for (let i = 0; i < arr.length - AMOUNT_DIFFERENCE_PREVIOUS; i++) {
+    resultArray.push(arr[i + AMOUNT_DIFFERENCE_PREVIOUS] - arr[i])
   }
 
+  return resultArray
+}
+
+export function ComputeLinePath(data: GraphValues): LinePath {
   const displacement: GraphValues = {
     x: computeDifference(data.x),
     y: computeDifference(data.y)

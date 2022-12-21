@@ -27,8 +27,8 @@ function Graph({ width, height, data }: GraphProps): JSX.Element {
   }
 
   const adjustedData = {
-    x: adjustGraphSize(data.x, graphX),
-    y: adjustGraphSize(data.y, graphY)
+    x: adjustGraphSize(data.x, graphXValueArea),
+    y: adjustGraphSize(data.y, graphYValueArea)
   }
   const minGraphValue = adjustedData.y.reduce((a, b) => (a < b ? a : b))
   const yAxiosAdjuster = minGraphValue - adjustedData.y[0]
@@ -51,8 +51,10 @@ function Graph({ width, height, data }: GraphProps): JSX.Element {
           stroke="blue"
           d={`
               ${absolutePosition}
-              M ${textAreaWidth} ${graphY + yAxiosAdjuster}
-              ${ComputeLinePath(adjustedData)}}
+              M ${textAreaWidth} ${graphY + yAxiosAdjuster - marginY / 2}
+              l ${marginX/2} 0
+              ${ComputeLinePath(adjustedData)}
+              l ${marginX/2} 0
             `}
           fill="none"
         ></path>

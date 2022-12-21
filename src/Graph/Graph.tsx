@@ -1,7 +1,5 @@
-import { GraphValues, LinePath } from '@/types'
-import { useEffect } from 'react'
+import { GraphValues } from '@/types'
 import { ComputeLinePath } from './ComputeLinePath'
-import { useAnimationPath } from './useAnimationPath'
 
 interface GraphProps {
   width: number
@@ -16,16 +14,24 @@ function Graph({ width, height, data }: GraphProps): JSX.Element {
   const textAreaHeigh = TEXT_HEIGHT * 2
   const graphX = width - textAreaWidth
   const graphY = height - textAreaHeigh
-  const INIT_PATH: LinePath = `l ${graphX} 0`
 
   const absolutePosition = `M ${textAreaWidth} 0 `
-  const { computedPathObj, updateComputedPath } = useAnimationPath(INIT_PATH)
 
-  useEffect(() => {
-    updateComputedPath(ComputeLinePath(data))
-    console.log('computedPath', ComputeLinePath(data))
-  }, [data])
+  function adjustGraphSize(arr: number[], graphSize: number): number[] {
+    // get Maxmimum value
+    const maxGraphValue = arr.reduce((a, b) => (a > b ? a : b))
+    // get minimam value
+    const minGraphValue = arr.reduce((a, b) => (a < b ? a : b))
+    const graphPerValue: number = graphSize / (maxGraphValue - minGraphValue)
+    return arr.map((graphValue) => graphValue * graphPerValue)
+  }
 
+  const adjustedData = {
+    x: adjustGraphSize(data.x, graphX),
+    y: adjustGraphSize(data.y, graphY)
+  }
+  const minGraphValue = adjustedData.y.reduce((a, b) => (a < b ? a : b))
+  const yAxiosAdjuster = minGraphValue - adjustedData.y[0]
   return (
     <div>
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
@@ -45,22 +51,11 @@ function Graph({ width, height, data }: GraphProps): JSX.Element {
           stroke="blue"
           d={`
               ${absolutePosition}
-              M ${textAreaWidth} ${graphY}
+              M ${textAreaWidth} ${graphY + yAxiosAdjuster}
+              ${ComputeLinePath(adjustedData)}}
             `}
           fill="none"
-        >
-          <animate
-            strokeWidth="3"
-            stroke="blue"
-            attributeName="d"
-            // from={`M 0 100 ${computedPathObj.from}`}
-            // to={`M 0 200 ${computedPathObj.to}`}
-            from={`M 0 100 ${computedPathObj.from}`}
-            to={`M 0 200 ${computedPathObj.to}`}
-            dur="1s"
-            fill="freeze"
-          />
-        </path>
+        ></path>
       </svg>
     </div>
   )

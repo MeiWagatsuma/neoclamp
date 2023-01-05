@@ -7,6 +7,13 @@ export interface GraphValueObj {
   y: GraphValueList
 }
 
+export type AdjustedGraphList = number[]
+
+export interface AdjustedGraphObj {
+  x: AdjustedGraphList
+  y: AdjustedGraphList
+}
+
 export type LinePath = string
 
 export interface ComputedPathObj {

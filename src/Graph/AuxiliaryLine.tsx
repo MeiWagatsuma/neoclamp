@@ -1,7 +1,7 @@
-import { GraphValueObj } from '@/types'
+import { AdjustedGraphObj } from '@/types'
 
 interface Props {
-  adjustedGraphObj: GraphValueObj
+  adjustedGraphObj: AdjustedGraphObj
   graphY: number
   marginX: number
   marginY: number

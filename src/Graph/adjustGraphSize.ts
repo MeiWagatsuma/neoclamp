@@ -1,9 +1,9 @@
-import { GraphValueList } from '../types'
+import { AdjustedGraphList } from '../types'
 
 export function adjustGraphSize(
   arr: number[],
   graphSize: number
-): GraphValueList {
+): AdjustedGraphList {
   // get Maxmimum value
   const maxGraphValue = arr.reduce((a, b) => (a > b ? a : b))
   // get minimam value

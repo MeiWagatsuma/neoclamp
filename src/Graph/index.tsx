@@ -1,4 +1,4 @@
-import { GraphValueObj } from '@/types'
+import { AdjustedGraphObj, GraphValueObj } from '@/types'
 import { adjustGraphSize } from './adjustGraphSize'
 import AuxiliaryLine from './AuxiliaryLine'
 import AxisLine from './AxisLine'
@@ -28,7 +28,7 @@ export default function Graph({
   const graphXValueArea = graphX - marginX
   const graphYValueArea = graphY - marginY
 
-  const adjustedData: GraphValueObj = {
+  const adjustedData: AdjustedGraphObj = {
     x: adjustGraphSize(data.x, graphXValueArea),
     y: adjustGraphSize(data.y, graphYValueArea)
   }

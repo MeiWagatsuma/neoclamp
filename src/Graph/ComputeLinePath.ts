@@ -1,4 +1,4 @@
-import { LinePath, GraphValues } from '@/types'
+import { LinePath, GraphValueObj } from '@/types'
 
 function computeDifference(arr: number[]): number[] {
   const AMOUNT_DIFFERENCE_PREVIOUS = 1
@@ -11,8 +11,8 @@ function computeDifference(arr: number[]): number[] {
   return resultArray
 }
 
-export function ComputeLinePath(data: GraphValues): LinePath {
-  const displacement: GraphValues = {
+export function ComputeLinePath(data: GraphValueObj): LinePath {
+  const displacement: GraphValueObj = {
     x: computeDifference(data.x),
     y: computeDifference(data.y)
   }

@@ -1,6 +1,10 @@
-export interface GraphValues {
-  x: number[]
-  y: number[]
+type GraphValue = number
+
+type GraphValueList = GraphValue[]
+
+export interface GraphValueObj {
+  x: GraphValueList
+  y: GraphValueList
 }
 
 export type LinePath = string

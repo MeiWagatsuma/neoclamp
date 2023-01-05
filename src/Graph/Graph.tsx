@@ -1,13 +1,21 @@
-import { GraphValues } from '@/types'
+import { GraphValueObj } from '@/types'
 import { ComputeLinePath } from './ComputeLinePath'
 
 interface GraphProps {
   width: number
   height: number
-  data: GraphValues
+  data: GraphValueObj
+  marginX: number
+  marginY: number
 }
 
-function Graph({ width, height, data }: GraphProps): JSX.Element {
+function Graph({
+  width,
+  height,
+  data,
+  marginX = 0,
+  marginY = 0
+}: GraphProps): JSX.Element {
   const TEXT_WIDTH = 20
   const TEXT_HEIGHT = 20
   const textAreaWidth = TEXT_WIDTH * 4

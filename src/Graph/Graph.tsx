@@ -1,4 +1,4 @@
-import { GraphValueObj } from '@/types'
+import { GraphValueObj, LinePath } from '@/types'
 import { ComputeLinePath } from './ComputeLinePath'
 
 interface GraphProps {
@@ -33,7 +33,10 @@ function Graph({
     // get minimam value
     const minGraphValue = arr.reduce((a, b) => (a < b ? a : b))
     const graphPerValue: number = graphSize / (maxGraphValue - minGraphValue)
-    return arr.map((graphValue) => graphValue * graphPerValue)
+    const zeroBaseGraphValue = arr.map(
+      (graphValue) => graphValue - minGraphValue
+    )
+    return zeroBaseGraphValue.map((graphValue) => graphValue * graphPerValue)
   }
 
   const adjustedData = {
@@ -42,9 +45,28 @@ function Graph({
   }
   const minGraphValue = adjustedData.y.reduce((a, b) => (a < b ? a : b))
   const yAxiosAdjuster = minGraphValue - adjustedData.y[0]
+
+  function xAuxiliaryLine(graphObj: GraphValueObj): LinePath {
+    console.log(graphObj)
+    let result = ''
+    graphObj.x.forEach((_, i) => {
+      result += `M ${textAreaWidth} ${
+        -1 * graphObj.y[i] + graphYValueArea + marginY / 2
+      } l ${graphObj.x[i] + marginX / 2} 0 `
+    })
+    return result
+  }
   return (
     <div>
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
+        <path
+          className="auxiliary-lines"
+          stroke="red"
+          strokeWidth="3"
+          d={`
+            ${xAuxiliaryLine(adjustedData)}
+          `}
+        ></path>
         <path
           className="axis-line"
           strokeWidth="3"

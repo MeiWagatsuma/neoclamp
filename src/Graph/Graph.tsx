@@ -33,16 +33,19 @@ function Graph({
 
   interface AuxiliaryLineProps {
     graphObj: GraphValueObj
+    graphY: number
   }
-  function AuxiliaryLine({ graphObj }: AuxiliaryLineProps): JSX.Element {
-    console.log(graphObj)
+  function AuxiliaryLine({
+    graphObj,
+    graphY
+  }: AuxiliaryLineProps): JSX.Element {
     interface Result {
       x: JSX.Element[]
       y: JSX.Element[]
     }
     const result: Result = { x: [], y: [] }
     graphObj.x.forEach((_, i) => {
-      const y = -1 * graphObj.y[i] + graphYValueArea + marginY / 2
+      const y = -1 * graphObj.y[i] + graphY - marginY / 2
 
       const x = graphObj.x[i] + marginX / 2
       result.x.push(<line x1="0" y1={y} x2={x} y2={y} key={i} />)
@@ -59,8 +62,11 @@ function Graph({
       </>
     )
   }
-
-  function AxiosLine(): JSX.Element {
+  interface AxisLineProps {
+    graphX: number
+    graphY: number
+  }
+  function AxisLine({ graphX, graphY }: AxisLineProps): JSX.Element {
     return (
       <path
         className="axis-line"
@@ -76,7 +82,16 @@ function Graph({
     )
   }
 
-  function GraphLine(): JSX.Element {
+  interface GraphLineProps {
+    adjustedData: GraphValueObj
+    marginX: number
+    marginY: number
+  }
+  function GraphLine({
+    adjustedData,
+    marginX,
+    marginY
+  }: GraphLineProps): JSX.Element {
     const minGraphValue = adjustedData.y.reduce((a, b) => (a < b ? a : b))
     const yAxiosAdjuster = minGraphValue - adjustedData.y[0]
 
@@ -104,9 +119,13 @@ function Graph({
         xmlns="http://www.w3.org/2000/svg"
       >
         <symbol id="graph-area">
-          <AuxiliaryLine graphObj={adjustedData} />
-          <AxiosLine />
-          <GraphLine />
+          <AuxiliaryLine graphObj={adjustedData} graphY={graphY} />
+          <AxisLine graphX={graphX} graphY={graphY} />
+          <GraphLine
+            adjustedData={adjustedData}
+            marginX={marginX}
+            marginY={marginY}
+          />
         </symbol>
         <use x={textAreaWidth} y="0" xlinkHref="#graph-area" />
       </svg>

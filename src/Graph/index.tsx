@@ -3,6 +3,7 @@ import { adjustGraphSize } from './adjustGraphSize'
 import AuxiliaryLine from './AuxiliaryLine'
 import AxisLine from './AxisLine'
 import GraphLine from './GraphLine'
+import GraphText from './GraphText'
 
 interface GraphProps {
   width: number
@@ -19,8 +20,9 @@ export default function Graph({
   marginX = 0,
   marginY = 0
 }: GraphProps): JSX.Element {
-  const TEXT_WIDTH = 20
-  const TEXT_HEIGHT = 20
+  const fontSize = 16
+  const TEXT_WIDTH = fontSize
+  const TEXT_HEIGHT = fontSize
   const textAreaWidth = TEXT_WIDTH * 4
   const textAreaHeigh = TEXT_HEIGHT * 2
   const graphX = width - textAreaWidth
@@ -57,6 +59,15 @@ export default function Graph({
           />
         </symbol>
         <use x={textAreaWidth} y="0" xlinkHref="#graph-area" />
+        <GraphText
+          graphObj={data}
+          adjustedGraphObj={adjustedData}
+          textAreaWidth={textAreaWidth}
+          fontSize={fontSize}
+          graphY={graphY}
+          marginX={marginX}
+          marginY={marginY}
+        />
       </svg>
     </div>
   )

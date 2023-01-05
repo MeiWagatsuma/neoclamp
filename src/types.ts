@@ -1,6 +1,6 @@
-type GraphValue = number
+export type GraphValue = number
 
-type GraphValueList = GraphValue[]
+export type GraphValueList = GraphValue[]
 
 export interface GraphValueObj {
   x: GraphValueList

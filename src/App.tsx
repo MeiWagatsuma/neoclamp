@@ -19,7 +19,7 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <h1>neoclamp()</h1>
-      <Graph width={600} height={300} data={data} marginX={100} marginY={40}/>
+      <Graph width={600} height={300} data={data} marginX={100} marginY={40} />
       <Input onChange={onChangeHandler} value={input} />
       <button onClick={onClickHandler}>update data</button>
     </div>

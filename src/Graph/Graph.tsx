@@ -14,6 +14,8 @@ function Graph({ width, height, data }: GraphProps): JSX.Element {
   const textAreaHeigh = TEXT_HEIGHT * 2
   const graphX = width - textAreaWidth
   const graphY = height - textAreaHeigh
+  const graphXValueArea = graphX - marginX
+  const graphYValueArea = graphY - marginY
 
   const absolutePosition = `M ${textAreaWidth} 0 `
 
@@ -52,9 +54,9 @@ function Graph({ width, height, data }: GraphProps): JSX.Element {
           d={`
               ${absolutePosition}
               M ${textAreaWidth} ${graphY + yAxiosAdjuster - marginY / 2}
-              l ${marginX/2} 0
+              l ${marginX / 2} 0
               ${ComputeLinePath(adjustedData)}
-              l ${marginX/2} 0
+              l ${marginX / 2} 0
             `}
           fill="none"
         ></path>

@@ -26,14 +26,10 @@ function Graph({
   const graphXValueArea = graphX - marginX
   const graphYValueArea = graphY - marginY
 
-  const absolutePosition = `M ${textAreaWidth} 0 `
-
   const adjustedData: GraphValueObj = {
     x: adjustGraphSize(data.x, graphXValueArea),
     y: adjustGraphSize(data.y, graphYValueArea)
   }
-  const minGraphValue = adjustedData.y.reduce((a, b) => (a < b ? a : b))
-  const yAxiosAdjuster = minGraphValue - adjustedData.y[0]
 
   interface AuxiliaryLineProps {
     graphObj: GraphValueObj
@@ -46,13 +42,11 @@ function Graph({
     }
     const result: Result = { x: [], y: [] }
     graphObj.x.forEach((_, i) => {
-      const x1 = textAreaWidth
-      const y1 = -1 * graphObj.y[i] + graphYValueArea + marginY / 2
+      const y = -1 * graphObj.y[i] + graphYValueArea + marginY / 2
 
-      const x2 = x1 + graphObj.x[i] + marginX / 2
-      const y2 = y1
-      result.x.push(<line x1={x1} y1={y1} x2={x2} y2={y2} />)
-      result.y.push(<line x1={x2} y1={y2} x2={x2} y2={graphY} />)
+      const x = graphObj.x[i] + marginX / 2
+      result.x.push(<line x1="0" y1={y} x2={x} y2={y} key={i} />)
+      result.y.push(<line x1={x} y1={y} x2={x} y2={graphY} key={-i - 1} />)
     })
     return (
       <>
@@ -72,7 +66,7 @@ function Graph({
         className="axis-line"
         strokeWidth="3"
         d={`
-              ${absolutePosition}
+              M 0 0 
               l 0 ${graphY}
               l ${graphX} 0
             `}
@@ -83,13 +77,15 @@ function Graph({
   }
 
   function GraphLine(): JSX.Element {
+    const minGraphValue = adjustedData.y.reduce((a, b) => (a < b ? a : b))
+    const yAxiosAdjuster = minGraphValue - adjustedData.y[0]
+
     return (
       <path
         strokeWidth="3"
         stroke="blue"
         d={`
-              ${absolutePosition}
-              M ${textAreaWidth} ${graphY + yAxiosAdjuster - marginY / 2}
+              M 0 ${graphY + yAxiosAdjuster - marginY / 2}
               l ${marginX / 2} 0
               ${ComputeLinePath(adjustedData)}
               l ${marginX / 2} 0
@@ -101,10 +97,18 @@ function Graph({
 
   return (
     <div>
-      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-        <AuxiliaryLine graphObj={adjustedData} />
-        <AxiosLine />
-        <GraphLine />
+      <svg
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <symbol id="graph-area">
+          <AuxiliaryLine graphObj={adjustedData} />
+          <AxiosLine />
+          <GraphLine />
+        </symbol>
+        <use x={textAreaWidth} y="0" xlinkHref="#graph-area" />
       </svg>
     </div>
   )

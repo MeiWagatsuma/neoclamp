@@ -1,4 +1,4 @@
-import { GraphValueObj, LinePath } from '@/types'
+import { GraphValueObj } from '@/types'
 import { ComputeLinePath } from './ComputeLinePath'
 
 interface GraphProps {
@@ -46,27 +46,37 @@ function Graph({
   const minGraphValue = adjustedData.y.reduce((a, b) => (a < b ? a : b))
   const yAxiosAdjuster = minGraphValue - adjustedData.y[0]
 
-  function xAuxiliaryLine(graphObj: GraphValueObj): LinePath {
+  function AuxiliaryLine(graphObj: GraphValueObj): JSX.Element {
     console.log(graphObj)
-    let result = ''
+    interface Result {
+      x: JSX.Element[]
+      y: JSX.Element[]
+    }
+    const result: Result = { x: [], y: [] }
     graphObj.x.forEach((_, i) => {
-      result += `M ${textAreaWidth} ${
-        -1 * graphObj.y[i] + graphYValueArea + marginY / 2
-      } l ${graphObj.x[i] + marginX / 2} 0 `
+      const x1 = textAreaWidth
+      const y1 = -1 * graphObj.y[i] + graphYValueArea + marginY / 2
+
+      const x2 = x1 + graphObj.x[i] + marginX / 2
+      const y2 = y1
+      result.x.push(<line x1={x1} y1={y1} x2={x2} y2={y2} />)
+      result.y.push(<line x1={x2} y1={y2} x2={x2} y2={graphY} />)
     })
-    return result
+    return (
+      <>
+        <g stroke="red" className="x-auxiliary-lines">
+          {result.x}
+        </g>
+        <g stroke="pink" className="y-auxiliary-lines">
+          {result.y}
+        </g>
+      </>
+    )
   }
   return (
     <div>
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-        <path
-          className="auxiliary-lines"
-          stroke="red"
-          strokeWidth="3"
-          d={`
-            ${xAuxiliaryLine(adjustedData)}
-          `}
-        ></path>
+        {AuxiliaryLine(adjustedData)}
         <path
           className="axis-line"
           strokeWidth="3"

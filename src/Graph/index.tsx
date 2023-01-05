@@ -1,4 +1,3 @@
-import React from 'react'
 import { GraphValueObj } from '@/types'
 import { adjustGraphSize } from './adjustGraphSize'
 import { ComputeLinePath } from './ComputeLinePath'

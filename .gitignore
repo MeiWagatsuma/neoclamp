@@ -7,3 +7,4 @@ dist-ssr
 .nvmrc
 *.code-workspace
 yarn-error.log
+yarn.lock

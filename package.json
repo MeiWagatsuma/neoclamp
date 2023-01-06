@@ -12,7 +12,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "src/**/*.{ js,jsx,ts,tsx}": "yarn run format"
+    "src/*.{ js,jsx,ts,tsx}": "yarn run format"
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",

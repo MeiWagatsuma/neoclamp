@@ -1,4 +1,4 @@
-import { AdjustedGraphList } from '../types'
+import { AdjustedGraphList } from './types'
 
 export function adjustGraphSize(
   arr: number[],

@@ -1,4 +1,4 @@
-import { LinePath, GraphValueObj } from '@/types'
+import { LinePath, GraphValueObj } from './types'
 
 function computeDifference(arr: number[]): number[] {
   const AMOUNT_DIFFERENCE_PREVIOUS = 1

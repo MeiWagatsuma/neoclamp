@@ -1,4 +1,4 @@
-import { AdjustedGraphObj, GraphValueObj } from '@/types'
+import { AdjustedGraphObj, GraphValueObj } from './types'
 
 interface Props {
   graphObj: GraphValueObj

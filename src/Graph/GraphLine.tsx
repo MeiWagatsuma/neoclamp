@@ -1,4 +1,4 @@
-import { AdjustedGraphObj } from '@/types'
+import { AdjustedGraphObj } from './types'
 import { ComputeLinePath } from './ComputeLinePath'
 
 interface Props {

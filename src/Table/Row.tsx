@@ -1,17 +1,26 @@
 interface Props {
   rows: number[][]
+  onChangeHandler: any
 }
-export default function Row({ rows }: Props): JSX.Element {
+export default function Row({ rows, onChangeHandler }: Props): JSX.Element {
   return (
     <tbody>
       {rows.map(
         (row: number[], i): JSX.Element => (
           <tr key={i}>
             <td className="breakpoint">
-              <input type="number" value={row[0]} />
+              <input
+                onChange={(e) => onChangeHandler(e, 'x', i)}
+                type="number"
+                value={row[0]}
+              />
             </td>
             <td className="pixels">
-              <input type="number" value={row[1]} />
+              <input
+                onChange={(e) => onChangeHandler(e, 'y', i)}
+                type="number"
+                value={row[1]}
+              />
             </td>
           </tr>
         )

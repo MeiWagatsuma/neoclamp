@@ -5,8 +5,9 @@ interface Props {
     x: number[]
     y: number[]
   }
+  onChangeHandler: any
 }
-export default function Table({ data }: Props): JSX.Element {
+export default function Table({ data, onChangeHandler }: Props): JSX.Element {
   const rows: number[][] = []
   data.x.forEach((_, i) => rows.push([data.x[i], data.y[i]]))
   return (
@@ -17,7 +18,7 @@ export default function Table({ data }: Props): JSX.Element {
           <th>Pixels</th>
         </tr>
       </thead>
-      <Row rows={rows} />
+      <Row rows={rows} onChangeHandler={onChangeHandler} />
     </table>
   )
 }

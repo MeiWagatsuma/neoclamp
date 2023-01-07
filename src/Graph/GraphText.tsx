@@ -29,6 +29,7 @@ export default function GraphText({
 
     result.x.push(
       <text
+        key={i}
         x={textAreaWidth - fontSize * 0.5}
         y={y}
         textAnchor="end"
@@ -39,6 +40,7 @@ export default function GraphText({
     )
     result.y.push(
       <text
+        key={i}
         x={x}
         y={graphY + fontSize * 1.5}
         textAnchor="middle"

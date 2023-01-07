@@ -34,7 +34,7 @@ export default function GraphText({
         textAnchor="end"
         fontSize={fontSize}
       >
-        {graphObj.x[i]}
+        {graphObj.y[i]}
       </text>
     )
     result.y.push(
@@ -44,7 +44,7 @@ export default function GraphText({
         textAnchor="middle"
         fontSize={fontSize}
       >
-        {graphObj.y[i]}
+        {graphObj.x[i]}
       </text>
     )
   })

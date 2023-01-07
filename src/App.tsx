@@ -1,6 +1,7 @@
 import Graph from './Graph'
 import { useState } from 'react'
 import Table from './Table'
+import CodeBlock from './CodeBlock'
 import { OnChangeHandler, Data } from './type'
 
 function App(): JSX.Element {
@@ -21,6 +22,7 @@ function App(): JSX.Element {
       <h1>neoclamp()</h1>
       <Graph width={600} height={300} data={data} marginX={100} marginY={40} />
       <Table data={data} onChangeHandler={onChangeHandler} />
+      <CodeBlock code={'hello'} />
     </div>
   )
 }

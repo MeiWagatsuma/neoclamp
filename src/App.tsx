@@ -1,6 +1,7 @@
 import Graph from './Graph'
 import { useState } from 'react'
 import { styled } from '@stitches/react'
+import Table from './Table'
 
 function App(): JSX.Element {
   const [data, setData] = useState({
@@ -22,6 +23,7 @@ function App(): JSX.Element {
       <Graph width={600} height={300} data={data} marginX={100} marginY={40} />
       <Input onChange={onChangeHandler} value={input} />
       <button onClick={onClickHandler}>update data</button>
+      <Table data={data} />
     </div>
   )
 }

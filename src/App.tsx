@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Table from './Table'
 import CodeBlock from './CodeBlock'
 import { OnChangeHandler, Data } from './type'
+import neoclamp from './neoclamp'
 
 function App(): JSX.Element {
   const [data, setData] = useState<Data>({
@@ -16,13 +17,14 @@ function App(): JSX.Element {
     console.log(result)
     setData(result)
   }
+  const code = neoclamp(data.x[0], data.y[0], data.x[1], data.y[1])
 
   return (
     <div className="App">
       <h1>neoclamp()</h1>
       <Graph width={600} height={300} data={data} marginX={100} marginY={40} />
       <Table data={data} onChangeHandler={onChangeHandler} />
-      <CodeBlock code={'hello'} />
+      <CodeBlock code={code} />
     </div>
   )
 }

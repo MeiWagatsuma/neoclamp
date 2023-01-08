@@ -9,10 +9,12 @@
     "preview": "vite preview",
     "format": "eslint --cache --fix src/ && prettier --write src/",
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
   },
   "lint-staged": {
-    "src/*.{ js,jsx,ts,tsx}": "yarn run format"
+    "src/*.{ js,jsx,ts,tsx}": "yarn run format",
+    "src/*.test.{ js,jsx,ts,tsx}": "yarn run test"
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",

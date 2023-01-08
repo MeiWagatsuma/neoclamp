@@ -1,5 +1,5 @@
 import { describe, test, expect } from '@jest/globals'
-import { computeDiff, computeSlope } from './neoclamp'
+import { computeDiff, computeSlope, formatCssClamp } from './neoclamp'
 
 describe('slope function', () => {
   test.each([
@@ -23,5 +23,15 @@ describe('computeDiff function', () => {
     ${-850} | ${170} | ${20}
   `('diff + startPoint = startPixel', ({ x, y, slope }) => {
     expect(computeDiff(x, y, slope) + slope * x).toBe(y)
+  })
+})
+
+describe('formatCssClamp function', () => {
+  test.each([
+    [400, 1, 300, 500, 'clamp(400px, 100vw + 300px, 500px)'],
+    [400, 1, 0, 500, 'clamp(400px, 100vw, 500px)'],
+    [800, 0.5, -30, 300, 'clamp(800px, 50vw - 30px, 300px)']
+  ])('return css clamp', (min, slope, diff, max, css) => {
+    expect(formatCssClamp(min, slope, diff, max)).toBe(css)
   })
 })

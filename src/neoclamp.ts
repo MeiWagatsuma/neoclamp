@@ -21,9 +21,13 @@ export function formatCssClamp(
   diff: number,
   max: number
 ): string {
-  return `clamp(${min}px, ${slope * 100}vw${
-    diff === 0 ? '' : ` + ${diff}px`
-  }, ${max}px)`
+  let diffString = ''
+  if (diff > 0) {
+    diffString = ` + ${diff}px`
+  } else if (diff < 0) {
+    diffString = ` - ${diff * -1}px`
+  }
+  return `clamp(${min}px, ${slope * 100}vw${diffString}, ${max}px)`
 }
 
 export default function neoclampCss(

@@ -1,6 +1,6 @@
 import neoclamp from './neoclamp'
 
-export default function extendNeoclamp(
+export function multipleClamp(
   startPoint: number,
   startPixel: number,
   endPoint: number,
@@ -8,10 +8,6 @@ export default function extendNeoclamp(
   ...argArray: number[]
 ): string {
   const arr = [startPoint, startPixel, endPoint, endPixel, ...argArray]
-  if (arr.length % 2 === 1) {
-    console.warn('Arguments must be even numbers')
-    return ''
-  }
 
   const clampList: string[] = []
   for (let i = 3; i <= arr.length; i += 2) {
@@ -24,6 +20,5 @@ export default function extendNeoclamp(
     )
     clampList.push(clamp)
   }
-
   return `calc(${clampList.join(' + ')})`
 }

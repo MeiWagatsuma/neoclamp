@@ -1,6 +1,6 @@
 import neoclamp from './neoclamp'
 
-export default function longNeoclamp(...arr: number[]): string {
+export default function extendNeoclamp(...arr: number[]): string {
   if (arr.length % 2 === 1) {
     console.warn('Arguments must be even numbers')
     return ''

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Table from './Table'
 import CodeBlock from './CodeBlock'
 import { OnChangeHandler, Data } from './type'
-import neoclamp from './neoclamp'
+import { multipleNeoclamp } from './multipleNeoclamp'
 
 function App(): JSX.Element {
   const [data, setData] = useState<Data>({
@@ -17,7 +17,13 @@ function App(): JSX.Element {
     console.log(result)
     setData(result)
   }
-  const code = neoclamp(data.x[0], data.y[0], data.x[1], data.y[1])
+
+  const multipleNeoclampArg: number[] = []
+  data.x.forEach((_, i) => {
+    multipleNeoclampArg.push(data.x[i])
+    multipleNeoclampArg.push(data.y[i])
+  })
+  const code = multipleNeoclamp(...multipleNeoclampArg)
 
   return (
     <div className="App">
